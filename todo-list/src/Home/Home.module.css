@@ -1,0 +1,16 @@
+.inputForm {
+  margin-bottom: 15px;
+}
+
+.button {
+  width: 170px;
+  height: 54px;
+  margin: 0 10px;
+  border: 0;
+  border-radius: 27px;
+  background-color: #36f;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+}
