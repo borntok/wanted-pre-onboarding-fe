@@ -1,5 +1,9 @@
 import { useState } from "react";
 import styles from "./Home.module.css";
+import axios from "axios";
+import { TODO_API } from "../api";
+
+axios.defaults.withCredentials = "include";
 
 export default function Home() {
   const [email, setEmail] = useState("");
@@ -37,19 +41,30 @@ export default function Home() {
     }
   }
 
-  function signUp(e) {
+  function onSubmit(e) {
     e.preventDefault();
+  }
+
+  async function signUp() {
+    try {
+      const response = await axios.post("/auth/signup", {
+        email: email,
+        password: password,
+      });
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
     console.log("회원가입");
   }
 
-  function signIn(e) {
-    e.preventDefault();
+  function signIn() {
     console.log("로그인");
   }
 
   return (
     <main>
-      <form className={styles.formContainer}>
+      <form className={styles.formContainer} onSubmit={onSubmit}>
         <div className={styles.inputForm}>
           <div>
             <input
@@ -72,16 +87,16 @@ export default function Home() {
           </div>
         </div>
         <button
-          onClick={signUp}
           className={styles.button}
           disabled={!emailCheck || !passwordCheck}
+          onClick={signUp}
         >
           회원가입
         </button>
         <button
-          onClick={signIn}
           className={styles.button}
           disabled={!emailCheck || !passwordCheck}
+          onClick={signIn}
         >
           로그인
         </button>
