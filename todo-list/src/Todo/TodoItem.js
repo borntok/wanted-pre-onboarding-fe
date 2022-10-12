@@ -8,6 +8,10 @@ export default function TodoItem(props) {
     props.onToggleClick(props.id);
   }
 
+  function handleRemoveClick() {
+    props.onRemoveClick(props.id);
+  }
+
   return (
     <li className={styles.container}>
       <BsCheckCircle
@@ -25,7 +29,10 @@ export default function TodoItem(props) {
         {props.text}
       </span>
       <AiOutlineEdit className={styles.editIcon} />
-      <RiDeleteBinLine className={styles.removeIcon} />
+      <RiDeleteBinLine
+        className={styles.removeIcon}
+        onClick={handleRemoveClick}
+      />
     </li>
   );
 }

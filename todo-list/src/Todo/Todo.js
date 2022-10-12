@@ -60,6 +60,20 @@ export default function Todo() {
     setTodos(newTodos);
   }
 
+  async function handleRemove(id) {
+    const response = await axios.delete(`/todos/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.access_token}`,
+      },
+    });
+
+    const newTodos = todos.filter((todo) => {
+      return todo.id !== id;
+    });
+
+    setTodos(newTodos);
+  }
+
   return (
     <main>
       <TodoInput
@@ -68,7 +82,11 @@ export default function Todo() {
         onSubmit={handleSubmit}
       />
       <Divider />
-      <TodoList todos={todos} onToggleClick={handleToggle} />
+      <TodoList
+        todos={todos}
+        onToggleClick={handleToggle}
+        onRemoveClick={handleRemove}
+      />
     </main>
   );
 }

@@ -13,6 +13,7 @@ export default function TodoList(props) {
               text={todo.todo}
               isCompleted={todo.isCompleted}
               onToggleClick={props.onToggleClick}
+              onRemoveClick={props.onRemoveClick}
             />
           );
         })}
