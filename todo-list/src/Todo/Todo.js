@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import Divider from "./Divier";
@@ -7,12 +8,22 @@ import TodoList from "./TodoList";
 import Exit from "../Exit/Exit";
 
 export default function Todo() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!localStorage.access_token) {
+      navigate("../", { replace: true });
+    }
+  });
+
   const [text, setText] = useState("");
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
-    getTodos();
-  }, []);
+    if (localStorage.access_token) {
+      getTodos();
+    }
+  });
 
   function handleTextChange(text) {
     setText(text);
@@ -39,7 +50,6 @@ export default function Todo() {
     });
 
     const newTodos = response.data;
-    console.log(newTodos);
     setTodos(newTodos);
   }
 
@@ -82,7 +92,7 @@ export default function Todo() {
         onTextChange={handleTextChange}
         onSubmit={handleSubmit}
       />
-      <Divider />
+      {/* <Divider /> */}
       <TodoList
         todos={todos}
         onToggleClick={handleToggle}
