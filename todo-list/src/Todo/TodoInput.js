@@ -1,4 +1,5 @@
 import styles from "./TodoInput.module.css";
+import { AiOutlineEnter } from "react-icons/ai";
 
 export default function TodoInput(props) {
   function handleInputChange(e) {
@@ -19,7 +20,7 @@ export default function TodoInput(props) {
           onChange={handleInputChange}
         />
         <button className={styles.enter} type="submit">
-          버튼
+          <AiOutlineEnter />
         </button>
       </form>
     </section>
