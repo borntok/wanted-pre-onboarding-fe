@@ -6,7 +6,16 @@ import { RiDeleteBinLine } from "react-icons/ri";
 export default function TodoItem(props) {
   return (
     <li className={styles.container}>
-      <BsCheckCircle className={styles.checkIcon} />
+      <BsCheckCircle
+        className={[
+          styles.checkIcon,
+          `${
+            props.isChecked
+              ? styles.checkedCircleIcon
+              : styles.unCheckedCircleIcon
+          }`,
+        ].join(" ")}
+      />
       <span>{props.text}</span>
       <AiOutlineEdit className={styles.editIcon} />
       <RiDeleteBinLine className={styles.removeIcon} />

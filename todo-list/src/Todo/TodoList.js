@@ -1,14 +1,18 @@
 import styles from "./TodoList.module.css";
 import TodoItem from "./TodoItem";
 
-export default function TodoList() {
-  const arr = ["양치하기", "청소하기", "공부하기"];
-
+export default function TodoList(props) {
   return (
     <section>
       <ol className={styles.olContainer}>
-        {arr.map((todo, idx) => {
-          return <TodoItem key={idx} text={todo} />;
+        {props.todos.map((todo) => {
+          return (
+            <TodoItem
+              key={todo.id}
+              text={todo.text}
+              isChecked={todo.isChecked}
+            />
+          );
         })}
       </ol>
     </section>
