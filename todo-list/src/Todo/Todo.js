@@ -4,6 +4,7 @@ import axios from "axios";
 import Divider from "./Divier";
 import TodoInput from "./TodoInput";
 import TodoList from "./TodoList";
+import Exit from "../Exit/Exit";
 
 export default function Todo() {
   const [text, setText] = useState("");
@@ -87,6 +88,8 @@ export default function Todo() {
         onToggleClick={handleToggle}
         onRemoveClick={handleRemove}
       />
+      <Divider />
+      <Exit />
     </main>
   );
 }
