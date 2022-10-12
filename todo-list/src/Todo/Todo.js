@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 import Divider from "./Divier";
@@ -8,6 +8,10 @@ import TodoList from "./TodoList";
 export default function Todo() {
   const [text, setText] = useState("");
   const [todos, setTodos] = useState([]);
+
+  useEffect(() => {
+    getTodos();
+  }, []);
 
   function handleTextChange(text) {
     setText(text);
@@ -44,6 +48,18 @@ export default function Todo() {
     setText("");
   }
 
+  function handleToggle(id) {
+    const newTodos = todos.map((todo) => {
+      if (todo.id === id) {
+        return { ...todo, isCompleted: !todo.isCompleted };
+      }
+
+      return todo;
+    });
+
+    setTodos(newTodos);
+  }
+
   return (
     <main>
       <TodoInput
@@ -52,7 +68,7 @@ export default function Todo() {
         onSubmit={handleSubmit}
       />
       <Divider />
-      <TodoList todos={todos} />
+      <TodoList todos={todos} onToggleClick={handleToggle} />
     </main>
   );
 }

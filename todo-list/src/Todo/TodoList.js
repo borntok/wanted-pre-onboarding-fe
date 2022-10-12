@@ -9,8 +9,10 @@ export default function TodoList(props) {
           return (
             <TodoItem
               key={todo.id}
+              id={todo.id}
               text={todo.todo}
-              isChecked={todo.isCompleted}
+              isCompleted={todo.isCompleted}
+              onToggleClick={props.onToggleClick}
             />
           );
         })}
