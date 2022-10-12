@@ -26,15 +26,21 @@ export default function Todo() {
     console.log(response);
   }
 
+  async function getTodos() {
+    const response = await axios.get("/todos", {
+      headers: {
+        Authorization: `Bearer ${localStorage.access_token}`,
+      },
+    });
+
+    const newTodos = response.data;
+    console.log(newTodos);
+    setTodos(newTodos);
+  }
+
   async function handleSubmit() {
     createTodo();
-    // const newTodos = todos.concat({
-    //   id: Date.now(),
-    //   text: text,
-    //   isChecked: false,
-    // });
-
-    // setTodos(newTodos);
+    getTodos();
     setText("");
   }
 

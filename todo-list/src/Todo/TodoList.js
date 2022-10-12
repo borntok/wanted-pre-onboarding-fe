@@ -9,8 +9,8 @@ export default function TodoList(props) {
           return (
             <TodoItem
               key={todo.id}
-              text={todo.text}
-              isChecked={todo.isChecked}
+              text={todo.todo}
+              isChecked={todo.isCompleted}
             />
           );
         })}
