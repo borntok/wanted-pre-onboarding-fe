@@ -5,7 +5,12 @@ module.exports = function (app) {
     createProxyMiddleware("/api", {
       target: "https://pre-onboarding-selection-task.shop/",
       changeOrigin: true,
+      ws: true,
+      pathRewrite: {
+        "^/api": "/", // rewrite path
+        "^/api/todo": "/todo", // remove base path
+      },
     })
   );
-  app.listen(3000);
+  // app.listen(3000);
 };

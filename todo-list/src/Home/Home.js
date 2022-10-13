@@ -50,7 +50,7 @@ export default function Home() {
 
   async function signUp() {
     try {
-      const response = await axios.post("/auth/signup", {
+      const response = await axios.post("/api/auth/signup", {
         email: email,
         password: password,
       });
@@ -59,14 +59,15 @@ export default function Home() {
       if (response.status === 201) {
         alert("회원가입이 완료되었습니다.");
       }
-    } catch {
+    } catch (error) {
+      console.error(error);
       alert("이미 존재하는 회원입니다.");
     }
   }
 
   async function signIn() {
     try {
-      const response = await axios.post("/auth/signin", {
+      const response = await axios.post("/api/auth/signin", {
         email: email,
         password: password,
       });
@@ -78,7 +79,8 @@ export default function Home() {
       if (response.status === 200) {
         navigate("../todo", { replace: true });
       }
-    } catch {
+    } catch (error) {
+      console.error(error);
       alert("이메일 혹은 비밀번호가 잘못되었습니다.");
     }
   }

@@ -33,7 +33,7 @@ export default function Todo() {
     let data = JSON.stringify({
       todo: text,
     });
-    const response = await axios.post("/todos", data, {
+    const response = await axios.post("/api/todos", data, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.access_token}`,
@@ -43,7 +43,7 @@ export default function Todo() {
   }
 
   async function getTodos() {
-    const response = await axios.get("/todos", {
+    const response = await axios.get("/api/todos", {
       headers: {
         Authorization: `Bearer ${localStorage.access_token}`,
       },
@@ -72,7 +72,7 @@ export default function Todo() {
   }
 
   async function handleRemove(id) {
-    const response = await axios.delete(`/todos/${id}`, {
+    const response = await axios.delete(`/api/todos/${id}`, {
       headers: {
         Authorization: `Bearer ${localStorage.access_token}`,
       },
