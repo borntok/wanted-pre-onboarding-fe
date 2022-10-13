@@ -59,8 +59,8 @@ export default function Home() {
       if (response.status === 201) {
         alert("회원가입이 완료되었습니다.");
       }
-    } catch (error) {
-      console.error(error);
+    } catch {
+      alert("이미 존재하는 회원입니다.");
     }
   }
 
@@ -78,8 +78,8 @@ export default function Home() {
       if (response.status === 200) {
         navigate("../todo", { replace: true });
       }
-    } catch (error) {
-      console.error(error);
+    } catch {
+      alert("이메일 혹은 비밀번호가 잘못되었습니다.");
     }
   }
 
