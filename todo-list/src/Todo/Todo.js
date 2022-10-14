@@ -23,7 +23,7 @@ export default function Todo() {
     if (localStorage.access_token) {
       getTodos();
     }
-  }, [todos]);
+  }, []);
 
   function handleTextChange(text) {
     setText(text);
@@ -64,7 +64,6 @@ export default function Todo() {
       if (todo.id === id) {
         return { ...todo, isCompleted: !todo.isCompleted };
       }
-      console.log(todo.isCompleted);
       return todo;
     });
     setTodos(newTodos);
@@ -84,10 +83,10 @@ export default function Todo() {
     setTodos(newTodos);
   }
 
-  async function handleEditEnter(id, text, isCompleted) {
+  async function handleEditEnter(id, text) {
     let data = JSON.stringify({
       todo: text,
-      isCompleted: isCompleted,
+      isCompleted: false,
     });
 
     const response = await axios.put(`/api/todos/${id}`, data, {

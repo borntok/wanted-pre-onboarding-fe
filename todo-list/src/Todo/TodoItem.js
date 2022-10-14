@@ -12,6 +12,7 @@ export default function TodoItem(props) {
 
   function handleToggleClick() {
     props.onToggleClick(props.id);
+    console.log(props.id, props.isCompleted);
   }
 
   function handleRemoveClick() {
@@ -24,7 +25,7 @@ export default function TodoItem(props) {
 
   function handleEditEnterClick(e) {
     e.preventDefault();
-    props.onEditEnterClick(props.id, editText, props.isCompleted);
+    props.onEditEnterClick(props.id, editText);
     setEditing(false);
   }
 
