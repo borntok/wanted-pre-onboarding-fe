@@ -33,6 +33,25 @@
   color: #c0c0c0;
 }
 
+.editForm {
+  display: flex;
+}
+
+.input {
+  display: inline-block;
+  padding: 0;
+  width: 407px;
+  font-size: 20px;
+  border: none;
+  background-color: inherit;
+}
+
+.item {
+  display: block;
+  width: 400px;
+  font-size: 20px;
+}
+
 .lineThrow {
   text-decoration: line-through;
   color: #c0c0c0;
@@ -40,7 +59,7 @@
 
 .editIcon {
   font-size: 28px;
-  margin-left: 305px;
+  margin-left: auto;
   color: blue;
   cursor: pointer;
   visibility: hidden;

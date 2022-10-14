@@ -23,7 +23,7 @@ export default function Todo() {
     if (localStorage.access_token) {
       getTodos();
     }
-  });
+  }, [todos]);
 
   function handleTextChange(text) {
     setText(text);
@@ -64,10 +64,9 @@ export default function Todo() {
       if (todo.id === id) {
         return { ...todo, isCompleted: !todo.isCompleted };
       }
-
+      console.log(todo.isCompleted);
       return todo;
     });
-
     setTodos(newTodos);
   }
 
@@ -85,6 +84,20 @@ export default function Todo() {
     setTodos(newTodos);
   }
 
+  async function handleEditEnter(id, text, isCompleted) {
+    let data = JSON.stringify({
+      todo: text,
+      isCompleted: isCompleted,
+    });
+
+    const response = await axios.put(`/api/todos/${id}`, data, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.access_token}`,
+      },
+    });
+  }
+
   return (
     <main>
       <TodoInput
@@ -97,6 +110,7 @@ export default function Todo() {
         todos={todos}
         onToggleClick={handleToggle}
         onRemoveClick={handleRemove}
+        onEditEnterClick={handleEditEnter}
       />
       <Divider />
       <Exit />
