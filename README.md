@@ -10,5 +10,6 @@ https://youtu.be/kPYK49zY3kc
   - React icons
 
 - 프로젝트 실행방법
-$ npm install
+`$ npm install
 $ npm start
+`
